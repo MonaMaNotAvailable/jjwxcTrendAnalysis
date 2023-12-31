@@ -1,3 +1,7 @@
+# TODO: preserve the link to each novel
+# TODO: allow variable for csv file name
+# TODO: automate this script for weekly scraping
+
 import requests
 import pandas as pd
 
@@ -22,7 +26,3 @@ table = tables[1]
 
 # Save the table to a CSV file
 table.to_csv('晋江总分榜12312023.csv', index=False, encoding='utf_8_sig') # gb18030
-
-
-
-# TODO: preserve the link to each novel
