@@ -50,7 +50,7 @@ df = df.drop('序号', axis=1)
 # Merge based on 作者 & 作品
 merged = table.merge(df, on=['作者','作品'], how='outer')
 # Change 作品积分 to the date scraping the data
-merged = merged.rename(columns={'作品积分': '01162024'})
+merged = merged.rename(columns={'作品积分': '01282024'})
 
 
 
@@ -79,7 +79,7 @@ merged.to_csv('晋江总分榜.csv', index=False, encoding='utf_8_sig') # gb1803
 # **********Statistics********** #
 
 # Write out the stats to separate txt file
-with open('WeeklyStats/01162024.txt', 'w') as file:
+with open('WeeklyStats/01282024.txt', 'w') as file:
     #crop the loaded info to 200 rows
     old = df.loc[:, '作品'].iloc[:200]
     new = table['作品']
@@ -108,16 +108,16 @@ with open('WeeklyStats/01162024.txt', 'w') as file:
 
     # Print the results
     print("\nDrop out of the ranking (in last week but not in this week):", file=file)
-    for item in unique_to_new:
-        print(item, file=file)
-    # Handle empty set
-    if not unique_to_new:
-        print("--None--\n", file=file)
-    print("New to the ranking (in this week but not in last week):", file=file)
     for item in unique_to_old:
         print(item, file=file)
     # Handle empty set
     if not unique_to_old:
+        print("--None--\n", file=file)
+    print("New to the ranking (in this week but not in last week):", file=file)
+    for item in unique_to_new:
+        print(item, file=file)
+    # Handle empty set
+    if not unique_to_new:
         print("--None--\n", file=file)
 
     # # Iterate over the comparison results
